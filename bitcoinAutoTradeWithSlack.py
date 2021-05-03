@@ -123,7 +123,7 @@ while True:
                 print(coin + " krw " + str(krw), "mybtc " + str(mybtc), "btcprice " + str(btcprice))
 
                 if (krw > 100000) and (mybtc * btcprice < 50000):
-                    buy_result = upbit.buy_market_order(coinR, krw*0.9995)
+                    buy_result = upbit.buy_market_order(coinR, 100000 * 0.9995)
                     post_message(myToken,slackchannel, coin + " " + " buy : " + str(buy_result))
         else:
             mybtc = get_balance(coin)
@@ -131,7 +131,7 @@ while True:
 
             if mybtc * btcprice > 5000:
                 sell_result = upbit.sell_market_order(coinR, mybtc * 0.9995)
-                post_message(myToken,slackchannel, coin + " " + " buy : " + str(sell_result))
+                post_message(myToken, slackchannel, coin + " " + " Sell : " + str(sell_result))
 
         time.sleep(2)
     except Exception as e:
