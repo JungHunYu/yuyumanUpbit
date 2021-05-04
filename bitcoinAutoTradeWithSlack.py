@@ -120,17 +120,17 @@ while True:
                 krw = get_balance("KRW")
                 mybtc = get_balance(coin)
                 btcprice = float(pyupbit.get_current_price(coinR))
-                print(coin + " krw " + str(krw), "mybtc " + str(mybtc), "btcprice " + str(btcprice))
-
-                if (krw > 100000) and (mybtc * btcprice < 50000):
-                    buy_result = upbit.buy_market_order(coinR, 100000 * 0.9995)
+                if (krw > 50000) and (mybtc * btcprice < 10000):
+                    print(coin + " krw " + str(krw), "mybtc " + str(mybtc), "btcprice " + str(btcprice))
+                    buy_result = upbit.buy_market_order(coinR, 50000)
                     post_message(myToken,slackchannel, coin + " " + " buy : " + str(buy_result))
         else:
             mybtc = get_balance(coin)
             btcprice = float(pyupbit.get_current_price(coinR))
 
             if mybtc * btcprice > 5000:
-                sell_result = upbit.sell_market_order(coinR, mybtc * 0.9995)
+                print(coin + " mybtc " + str(mybtc), "btcprice " + str(btcprice))
+                sell_result = upbit.sell_market_order(coinR, mybtc)
                 post_message(myToken, slackchannel, coin + " " + " Sell : " + str(sell_result))
 
         time.sleep(2)
